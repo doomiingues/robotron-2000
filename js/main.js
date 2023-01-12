@@ -42,11 +42,11 @@ control.forEach( (element) => {
 } )
 
 function manipulateData(operation, control) {
-    const peco = control.querySelector("[data-counter]")
+    const unit = control.querySelector("[data-counter]")
     if (operation === "-") {
-        peco.value = parseInt(peco.value) - 1
+        unit.value = parseInt(unit.value) - 1
     } else {    
-        peco.value = parseInt(peco.value) + 1
+        unit.value = parseInt(unit.value) + 1
     }
 }
 
