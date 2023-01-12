@@ -18,26 +18,26 @@ const parts = {
         "force": 0,
         "power": 7,
         "energy": 48,
-        "speed": -4
+        "speed": -24
     },
     "legs": {
         "force": 27,
         "power": 21,
         "energy": -32,
-        "speed": 43
+        "speed": 42
     },
     "rockets": {
         "force": 0,
         "power": 28,
         "energy": 0,
-        "speed": -7
+        "speed": -3
     }
 } 
 
 control.forEach( (element) => {
     element.addEventListener("click", (event) => {
         manipulateData(event.target.dataset.control, event.target.parentNode)
-        updateStatistics(event.target.dataset.part)
+        updateStatistics(event.target.dataset.part, event.target.dataset.control)
     })
 } )
 
@@ -48,16 +48,17 @@ function manipulateData(operation, control) {
     } else {    
         peco.value = parseInt(peco.value) + 1
     }
-    while (parseInt(peco.value) < 0) {
-        alert("Não pode haver peças com valor negativo, revise seus dados.")
-        peco.value = "00"
-    }
 }
 
-function updateStatistics(part) {
-    
-    statistics.forEach( (element) => {
-        element.textContent = parseInt(element.textContent) + parts[part] [element.dataset.statistic]
-    }) 
+function updateStatistics(part, operation) {
+    if (operation === "+") {
+        statistics.forEach( (element) => {
+            element.textContent = parseInt(element.textContent) + parts[part] [element.dataset.statistic]
+        }) 
+    } else {
+        statistics.forEach( (element) => {
+            element.textContent = parseInt(element.textContent) - parts[part] [element.dataset.statistic]
+        }) 
+    }
 }
 
